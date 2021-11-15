@@ -1,0 +1,9 @@
+.footer__subtitle {
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.footer__subtitle:hover {
+  cursor: pointer;
+}

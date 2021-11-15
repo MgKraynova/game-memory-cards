@@ -1,0 +1,11 @@
+.footer {
+  outline: 1px solid red;
+  height: 9vh;
+  width: 100%;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+}

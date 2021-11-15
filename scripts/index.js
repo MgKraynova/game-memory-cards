@@ -6,7 +6,6 @@ let firstCard;
 let secondCard;
 let lockBoard = false;
 
-
 // добавляет или удаляет класс flip-animation карточкам
 // Когда мы нажимаем первую карту, она должна ждать, пока другая карта не будет перевернута.
 function flipCard() {
@@ -26,7 +25,6 @@ function flipCard() {
   }
 }
 
-cards.forEach(card => card.addEventListener('click', flipCard));
 
 function checkForMatch() {
   if (firstCard.dataset.picture === secondCard.dataset.picture) {
@@ -69,4 +67,6 @@ function shuffle() {
 }
 
 cards.forEach(() => shuffle());
+cards.forEach(card => card.addEventListener('mousedown', flipCard));
+
 
