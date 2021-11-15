@@ -1,8 +1,8 @@
 .card__front-image {
   position: absolute;
   padding: 20px;
-  width: 128px;
-  height: 128px;
+  max-width: 128px;
+  max-height: 128px;
   margin: auto;
   top: 0;
   left: 0;
