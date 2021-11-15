@@ -1,0 +1,9 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 832px;
+  height: 832px;
+  outline: 1px solid green;
+  perspective: 1000px;
+}
+
