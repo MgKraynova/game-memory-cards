@@ -10,72 +10,35 @@
   <h1 class="header__title">Игра "Найди парные картинки"</h1>
 </header>
 <main class="cards">
-  <div class="card" data-picture="santa">
-    <img class="card__front-image" src="./images/free-sticker-santa-claus-4392512.png" alt="Санта Клаус">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="santa">
-    <img class="card__front-image" src="./images/free-sticker-santa-claus-4392512.png" alt="Санта Клаус">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="hare">
-    <img class="card__front-image" src="./images/free-sticker-drums-4392507.png" alt="Заяц с барабаном">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="hare">
-    <img class="card__front-image" src="./images/free-sticker-drums-4392507.png" alt="Заяц с барабаном">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="penguin">
-    <img class="card__front-image" src="./images/free-sticker-accordion-4392492.png" alt="Пингвин с аккордеоном">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="penguin">
-    <img class="card__front-image" src="./images/free-sticker-accordion-4392492.png" alt="Пингвин с аккордеоном">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="cat">
-    <img class="card__front-image" src="./images/free-sticker-christmas-cat.png" alt="Кошка в новогодней коробке">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="cat">
-    <img class="card__front-image" src="./images/free-sticker-christmas-cat.png" alt="Кошка в новогодней коробке">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="sleigh">
-    <img class="card__front-image" src="./images/free-sticker-santa-claus.png" alt="Санта Клаус на санках">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="sleigh">
-    <img class="card__front-image" src="./images/free-sticker-santa-claus.png" alt="Санта Клаус на санках">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="chocolate">
-    <img class="card__front-image" src="./images/free-sticker-hot-chocolate-4392558.png" alt="Горячий шоколад">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
-  <div class="card" data-picture="chocolate">
-    <img class="card__front-image" src="./images/free-sticker-hot-chocolate-4392558.png" alt="Горячий шоколад">
-    <img class="card__back-image" src="./images/free-sticker-christmas-decorations-4392565.png" alt="Новогодние игрушки">
-  </div>
+  <template class="template">
+    <div class ="card">
+      <div class="back">
+      </div>
+      <div class="front">
+      </div>
+    </div>
+  </template>
 </main>
-<footer class="footer">
-  <h2 class="footer__subtitle">Правила игры</h2>
-  <p class="footer__text">Стикеры сделаны
-    <a href="https://www.flaticon.com/ru/authors/stickers" class="footer__link">Stickers</a>
-    from
-    <a href="https://www.flaticon.com/ru/" class="footer__link">www.flaticon.com</a>
-  </p>
-  <a class ="footer__link" id="violet-theme">Фиолетовая тема</a>
-  <a class="footer__link" id="dark-theme">Темная тема</a>
-  <a class="footer__link" id="dark-violet-theme">Темно-фиолетовая тема</a>
-  <a class="footer__link" id="orange-theme">Оранжевая тема</a>
-  <a class="footer__link" id="green-theme">Зеленая тема</a>
-  <a class="footer__link" id="pastel-theme">Пастельная тема</a>
-  <a class="footer__link" id="blue-theme">Синяя тема</a>
-  <a class="footer__link" id="dark-blue-theme">Темно синяя тема</a>
-  <p class="footer__text">© 2021 Kraynova Marina</p>
-</footer>
-<script src="scripts/index.js"></script>
+<!--<footer class="footer">-->
+<!--  <h2 class="footer__subtitle">Правила игры</h2>-->
+<!--  <p class="footer__text">Стикеры сделаны-->
+<!--    <a href="https://www.flaticon.com/ru/authors/stickers" class="footer__link">Stickers</a>-->
+<!--    from-->
+<!--    <a href="https://www.flaticon.com/ru/" class="footer__link">www.flaticon.com</a>-->
+<!--  </p>-->
+<!--  <a class ="footer__link" id="violet-theme">Фиолетовая тема</a>-->
+<!--  <a class="footer__link" id="dark-theme">Темная тема</a>-->
+<!--  <a class="footer__link" id="dark-violet-theme">Темно-фиолетовая тема</a>-->
+<!--  <a class="footer__link" id="orange-theme">Оранжевая тема</a>-->
+<!--  <a class="footer__link" id="green-theme">Зеленая тема</a>-->
+<!--  <a class="footer__link" id="pastel-theme">Пастельная тема</a>-->
+<!--  <a class="footer__link" id="blue-theme">Синяя тема</a>-->
+<!--  <a class="footer__link" id="dark-blue-theme">Темно синяя тема</a>-->
+<!--  <p class="footer__text">© 2021 Kraynova Marina</p>-->
+<!--</footer>-->
+<script src="scripts/colorsForCards.js"></script>
+<script src="scripts/Card.js"></script>
+<!--<script src="scripts/Game.js"></script>-->
+<!--<script src="scripts/index.js"></script>-->
 </body>
 </html>

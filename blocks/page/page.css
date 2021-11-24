@@ -14,9 +14,11 @@
   /*background: rgb(231,51,51);*/
   /*background: rgb(87,165,212);*/
   /*background: rgb(225,227,254);*/
-  background: linear-gradient(45deg, #30cfd0, #330867);
+
+background: rgb(5,19,32);
   /*color: rgb(126, 130, 186);*/
-  color: #FFFCF9;
+  /*color: #FFFCF9;*/
+  color: rgb(246,246,246);
   height: 100vh;
   display: flex;
   flex-direction: column;
