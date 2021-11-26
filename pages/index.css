@@ -9,17 +9,16 @@
 @import url(../blocks/cards/cards.css);
 
 @import url(../blocks/card/card.css);
-@import url(../blocks/card/__back-image/card__back-image.css);
-@import url(../blocks/card/__front-image/card__front-image.css);
-
-@import url(../blocks/flip-animation/flip-animation.css);
-
-@import url(../blocks/footer/footer.css);
-@import url(../blocks/footer/__subtitle/footer__subtitle.css);
-@import url(../blocks/footer/__text/footer__text.css);
-@import url(../blocks/footer/__link/footer__link.css);
-
 @import url(../blocks/front.css);
 @import url(../blocks/back.css);
 @import url(../blocks/front-animation.css);
 @import url(../blocks/back-animation.css);
+
+
+
+@import url(../blocks/flip-animation/flip-animation.css);
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);
+@import url(../blocks/footer/__link/footer__link.css);
+

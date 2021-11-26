@@ -7,7 +7,3 @@
   transition: transform .6s linear;
   transform: perspective(600px) rotateY(0deg);
 }
-
-/*.card:active > .back {*/
-/*  transform: perspective(600px) rotateY(0);*/
-/*}*/

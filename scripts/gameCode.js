@@ -1,8 +1,17 @@
-
-
 let firstCard;
 let secondCard;
 let numberOfFoundMatches = 0;
+let numberOfDisabledCards = 0;
+
+const cards = document.querySelectorAll('.card');
+
+
+const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
+const totalNumberOfCards = document.getElementById('total-number-of-cards');
+
+counterOfDisabledCards.innerText = '0';
+totalNumberOfCards.innerText = `${cards.length}`;
+
 
 function isAllCardsOpened() {
   if (numberOfFoundMatches === (cards.length/2)) {
@@ -12,7 +21,10 @@ function isAllCardsOpened() {
 
 function checkCard(event) {
   console.log(event.target);
-  if (!firstCard) {
+  updateCounter();
+  if ((firstCard) && (secondCard)) {
+    console.log('Это баг!');
+  } else if (!firstCard) {
     firstCard = this;
     flipCard(firstCard);
     console.log('первая карта');
@@ -51,6 +63,7 @@ function makeCardsDisabled(firstCard, secondCard) {
   firstCard.removeEventListener('click', checkCard);
   secondCard.removeEventListener('click', checkCard);
   console.log('блокируем карты');
+  numberOfDisabledCards = numberOfDisabledCards + 2;
 
 
   firstCard.setAttribute('data-isDisabled', 'true');
@@ -59,7 +72,10 @@ function makeCardsDisabled(firstCard, secondCard) {
 
 function showAnimationForDisabledCards() {
   console.log('Эта карта заблокирована, выберете другую карту');
+}
 
+function updateCounter() {
+  counterOfDisabledCards.innerText = `${numberOfDisabledCards}`;
 }
 
 function checkIfCardsAreMatched() {
@@ -69,7 +85,9 @@ function checkIfCardsAreMatched() {
     firstCard.addEventListener('click', showAnimationForDisabledCards);
     secondCard.addEventListener('click', showAnimationForDisabledCards);
     numberOfFoundMatches = numberOfFoundMatches + 1;
+    updateCounter();
     console.log(numberOfFoundMatches);
+    console.log(`Вы отгадали ${numberOfDisabledCards} из ${cards.length} карточек`);
     setTimeout(isAllCardsOpened, 1000);
   } else {
     console.log('карты разные');
@@ -80,58 +98,9 @@ function checkIfCardsAreMatched() {
   secondCard = null;
 }
 
-const cards = document.querySelectorAll('.card');
 
 cards.forEach((card) => {
   card.addEventListener('click', checkCard);
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- // ОД ИЗ КЛАССА
-// this.isDisabled = false;
-// this._isFirstCardSAlreadyFlipped = false;
-// this._firstCard = '';
-// this._secondCard ='';
-//
-// _defineNumberOfCard() {
-//   if (!this._isFirstCardSAlreadyFlipped) {
-//     this._firstCard = this;
-//     this._isFirstCardSAlreadyFlipped = true;
-//     console.log('это первая карта');
-//   } else {
-//     this._secondCard = this;
-//     this._isFirstCardSAlreadyFlipped = false;
-//     console.log('это вторая карта');
-//   }
-// }
-//
-// _checkForMatch() {
-//   this._defineNumberOfCard();
-//
-//   if (this._firstCard.id === this._secondCard.id) {
-//     //заблокировать
-//     this._firstCard.isDisabled = true;
-//     this._secondCard.isDisabled = true;
-//     console.log('блокируем карты');
-//   } else {
-//     // перевернуть
-//     this._firstCard.addFlipAnimation();
-//     this._secondCard.addFlipAnimation();
-//     console.log('переворачиваем обратно карты');
-//   }
-// }
