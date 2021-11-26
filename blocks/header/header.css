@@ -1,8 +1,9 @@
 .header {
-  outline: 1px solid red;
+  outline: 1px solid #b10e0e;
   height: 10vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

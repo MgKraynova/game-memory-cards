@@ -7,20 +7,12 @@
   box-sizing: border-box;
   margin: 0 auto;
   width: 872px;
-  /*background: rgb(255,239,240);*/
-  /*background: #fac57d;*/
-  /*background: #F2E7DC;*/
-  /*background-image: url("../../images/snowfall-201496_1920.jpg");*/
-  /*background: rgb(231,51,51);*/
-  /*background: rgb(87,165,212);*/
-  /*background: rgb(225,227,254);*/
-
-background: rgb(5,19,32);
-  /*color: rgb(126, 130, 186);*/
-  /*color: #FFFCF9;*/
+  background: rgb(5,19,32);
   color: rgb(246,246,246);
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
+

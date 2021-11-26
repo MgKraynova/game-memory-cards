@@ -6,8 +6,5 @@
   position: absolute;
   transform: perspective(600px) rotateY(180deg);
   transition: transform .6s linear;
+  border-radius: 10px;
 }
-
-/*.card:active > .front {*/
-/*  transform: perspective(600px) rotateY(-180deg);*/
-/*}*/
