@@ -4,6 +4,10 @@ let numberOfFoundMatches = 0;
 let numberOfDisabledCards = 0;
 
 const cards = document.querySelectorAll('.card');
+const popup = document.querySelector('.popup');
+const closeButton = document.querySelector('.popup__close-button');
+
+closeButton.addEventListener('click', closePopup);
 
 
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
@@ -15,8 +19,25 @@ totalNumberOfCards.innerText = `${cards.length}`;
 
 function isAllCardsOpened() {
   if (numberOfFoundMatches === (cards.length/2)) {
-    alert('Вы победили!');
+    openPopup();
   }
+}
+
+function openPopup() {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByPressEsc);
+}
+
+function closePopupByPressEsc(evt) {
+  const popup = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(popup);
+  }
+}
+
+function closePopup() {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByPressEsc);
 }
 
 function checkCard(event) {

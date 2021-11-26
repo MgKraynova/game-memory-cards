@@ -1,0 +1,8 @@
+.popup__start-button {
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+.popup__start-button:hover {
+  cursor: pointer;
+}
