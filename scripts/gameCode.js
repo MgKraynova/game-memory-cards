@@ -6,8 +6,10 @@ let numberOfDisabledCards = 0;
 const cards = document.querySelectorAll('.card');
 const popup = document.querySelector('.popup');
 const closeButton = document.querySelector('.popup__close-button');
+const startGameButton = document.querySelector('.popup__start-button');
 
 closeButton.addEventListener('click', closePopup);
+startGameButton.addEventListener('click', startNewGame);
 
 
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
@@ -117,6 +119,26 @@ function checkIfCardsAreMatched() {
   }
   firstCard = null;
   secondCard = null;
+}
+
+function deleteCards() {
+  cards.forEach((card) => {
+    card.remove();
+   card.removeAttribute('data-isDisabled');
+  })
+  numberOfFoundMatches = 0;
+  numberOfDisabledCards = 0;
+}
+
+function startNewGame() {
+  deleteCards();
+  colorsForFrontImages.forEach((color) => {
+    addCard(color);
+  });
+  closePopup();
+  Array.from(document.querySelectorAll('.cards')).forEach((card) => {
+    card.addEventListener('click', checkCard); //todo найти баг
+  });
 }
 
 
