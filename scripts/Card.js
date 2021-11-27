@@ -46,17 +46,24 @@ class Card {
     }
 }
 
-const blockCards = document.querySelector('.cards');
+const cardsContainer = document.querySelector('.cards');
 
 function addCard(color) {
   const card = new Card('.template', '.front', '.back',
     'front-animation', 'back-animation', color);
   const cardElement = card.createCard();
-  blockCards.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
-colorsForFrontImages.forEach((color) => {
-  addCard(color);
-});
+// colorsForFrontImages.forEach((color) => {
+//   addCard(color);
+// });
 
 
+function createColorCards(colors) {
+  colors.forEach((color) => {
+    addCard(color);
+  });
+}
+
+createColorCards(colorsForFrontImages);
