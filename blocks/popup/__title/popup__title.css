@@ -5,3 +5,10 @@
   text-align: center;
   width: 250px;
 }
+
+@media screen and (max-width: 415px) {
+  .popup__title {
+    font-size: 26px;
+    width: 200px;
+  }
+}
