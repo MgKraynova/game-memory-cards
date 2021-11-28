@@ -6,13 +6,15 @@
   -moz-text-size-adjust: 100%;
   box-sizing: border-box;
   margin: 0 auto;
-  width: 872px;
-  background: rgb(5,19,32);
-  color: rgb(246,246,246);
-  height: 100vh;
+  max-width: 872px;
+  background: rgb(5, 19, 32);
+  color: rgb(246, 246, 246);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 

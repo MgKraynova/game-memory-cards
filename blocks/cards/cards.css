@@ -1,10 +1,26 @@
 .cards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 872px;
   height: 60vh;
   outline: 1px solid green;
   perspective: 1000px;
 }
 
+@media screen and (max-width: 600px) {
+  .cards {
+    min-height: 800px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .cards {
+    min-height: 1060px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .cards {
+    min-height: 1570px;
+  }
+}

@@ -1,6 +1,8 @@
 .card {
   width: calc(25% - 25px);
+  min-width: 120px;
   height: calc(33.333% - 20px);
+  max-height: 250px;
   border-radius: 10px;
   margin: 5px 10px;
   position: relative;
@@ -9,4 +11,18 @@
 .card:hover {
   transform: scale(1.05);
   transition: transform .2s;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    display: block;
+    width: 100px;
+    height: 250px;
+  }
+
+  .card:after {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
 }

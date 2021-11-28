@@ -1,8 +1,9 @@
 .popup__start-button {
   border-radius: 5px;
   margin-top: 25px;
-  padding: 10px;
+  padding: 15px;
   background-color: rgb(246,246,246);
+  font-size: 24px;
 }
 
 .popup__start-button:hover {
