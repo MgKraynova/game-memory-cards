@@ -1,6 +1,8 @@
 .header {
   outline: 1px solid #b10e0e;
-  height: 25vh;
+  max-height: 25vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
