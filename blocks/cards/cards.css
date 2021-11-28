@@ -1,26 +1,31 @@
 .cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
   height: 60vh;
   outline: 1px solid green;
   perspective: 1000px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 550px) {
   .cards {
-    min-height: 800px;
+    height: 40vh;
   }
 }
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 430px) {
   .cards {
-    min-height: 1060px;
+    height: 30vh;
+    gap: 10px;
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 375px) {
   .cards {
-    min-height: 1570px;
+    height: 25vh;
   }
 }

@@ -1,3 +1,9 @@
 .header__span-text {
   font-size: 30px;
 }
+
+@media screen and (max-width: 425px) {
+  .header__span-text {
+    font-size: 24px;
+  }
+}
