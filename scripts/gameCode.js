@@ -1,32 +1,26 @@
+// ПЕРЕМЕННЫЕ
+
 let firstCard;
 let secondCard;
 let numberOfFoundMatches = 0;
 let numberOfDisabledCards = 0;
 
+const debug = false; // константа для отладки
 const cards = document.querySelectorAll('.card');
 const popup = document.querySelector('.popup');
 const closeButton = document.querySelector('.popup__close-button');
 const startGameButton = document.querySelector('.popup__start-button');
-
-closeButton.addEventListener('click', closePopup);
-startGameButton.addEventListener('click', () => {
-  startNewGame(colorsForFrontImages)
-});
-
-
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
 const totalNumberOfCards = document.getElementById('total-number-of-cards');
+
+// НАЧАЛЬНЫЕ ЗНАЧЕНИЯ ПЕРЕМЕННЫХ
 
 counterOfDisabledCards.innerText = '0';
 totalNumberOfCards.innerText = `${cards.length}`;
 
+// ФУНКЦИИ
 
-function isAllCardsOpened() {
-  if (numberOfFoundMatches === (cards.length/2)) {
-    openPopup();
-  }
-}
-
+// Функции, относящиеся к попапу
 function openPopup() {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByPressEsc);
@@ -44,33 +38,43 @@ function closePopup() {
   document.removeEventListener('keydown', closePopupByPressEsc);
 }
 
-function checkCard(event) {
-  console.log(event.target);
+// Функции, относящиеся к функционалу игры
+function isAllCardsOpened() {
+  if (numberOfFoundMatches === (cards.length/2)) {
+    openPopup();
+  }
+}
+
+function checkCard() {
   updateCounter();
-  if ((firstCard) && (secondCard)) {
-    console.log('Это баг!');
-  } else if (!firstCard) {
+  if (!firstCard) {
     firstCard = this;
     flipCard(firstCard);
-    console.log('первая карта');
+    if (debug) {
+      console.log('первая карта');
+    }
   } else if (firstCard && !(this === firstCard)) {
     secondCard = this;
     flipCard(secondCard);
     checkIfCardsAreMatched();
-    console.log('вторая карта');
+    if (debug) {
+      console.log('вторая карта');
+    }
   } else if (this === firstCard) {
-    console.log('вы уже открыли эту карточку, мы ее закрываем');
+    if (debug) {
+      console.log('вы уже открыли эту карточку, мы ее закрываем');
+    }
     firstCard = null;
     unFlipCard(this);
   }
 }
 
 function flipCard(card) {
-  const front = card.querySelector('.front');
-  const back = card.querySelector('.back');
+  const front = card.querySelector('.card-front');
+  const back = card.querySelector('.card-back');
 
-  front.classList.add('front-animation');
-  back.classList.add('back-animation');
+  front.classList.add('card-front-animation');
+  back.classList.add('card-back-animation');
 }
 
 function unFlipCardWithTimeout(card) {
@@ -78,25 +82,29 @@ function unFlipCardWithTimeout(card) {
 }
 
 function unFlipCard(card) {
-  const front = card.querySelector('.front');
-  const back = card.querySelector('.back');
-  front.classList.remove('front-animation');
-  back.classList.remove('back-animation');
+  const front = card.querySelector('.card-front');
+  const back = card.querySelector('.card-back');
+  front.classList.remove('card-front-animation');
+  back.classList.remove('card-back-animation');
 }
 
 function makeCardsDisabled(firstCard, secondCard) {
   firstCard.removeEventListener('click', checkCard);
   secondCard.removeEventListener('click', checkCard);
-  console.log('блокируем карты');
+  if (debug) {
+    console.log('блокируем карты');
+  }
   numberOfDisabledCards = numberOfDisabledCards + 2;
-
 
   firstCard.setAttribute('data-isDisabled', 'true');
   secondCard.setAttribute('data-isDisabled', 'true');
 }
 
 function showAnimationForDisabledCards() {
-  console.log('Эта карта заблокирована, выберете другую карту');
+  if (debug) {
+    console.log('Эта карта заблокирована, выберете другую карту');
+  }
+  // todo добавить анимацию для заблокированных карт
 }
 
 function updateCounter() {
@@ -111,17 +119,19 @@ function setCounterToZero() {
 
 function checkIfCardsAreMatched() {
   if (firstCard.id === secondCard.id) {
-    console.log('карты одинаковые');
+    if (debug) {
+      console.log('карты одинаковые');
+    }
     makeCardsDisabled(firstCard, secondCard);
     firstCard.addEventListener('click', showAnimationForDisabledCards);
     secondCard.addEventListener('click', showAnimationForDisabledCards);
     numberOfFoundMatches = numberOfFoundMatches + 1;
     updateCounter();
-    console.log(numberOfFoundMatches);
-    console.log(`Вы отгадали ${numberOfDisabledCards} из ${cards.length} карточек`);
     setTimeout(isAllCardsOpened, 1000);
   } else {
-    console.log('карты разные');
+    if (debug) {
+      console.log('карты разные');
+    }
     unFlipCardWithTimeout(firstCard);
     unFlipCardWithTimeout(secondCard);
   }
@@ -141,14 +151,18 @@ function startNewGame(colors) {
   setCounterToZero();
   createColorCards(colors);
   Array.from(document.querySelectorAll('.card')).forEach((card) => {
-    card.addEventListener('click', checkCard); //todo найти баг
+    card.addEventListener('click', checkCard);
   });
   closePopup();
 }
 
-
+// Иное
 cards.forEach((card) => {
   card.addEventListener('click', checkCard);
 })
 
+closeButton.addEventListener('click', closePopup);
+startGameButton.addEventListener('click', () => {
+  startNewGame(colorsForFrontImages)
+});
 

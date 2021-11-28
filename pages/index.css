@@ -11,10 +11,10 @@
 @import url(../blocks/cards/cards.css);
 
 @import url(../blocks/card/card.css);
-@import url(../blocks/front.css);
-@import url(../blocks/back.css);
-@import url(../blocks/front-animation.css);
-@import url(../blocks/back-animation.css);
+@import url(../blocks/card-front/card-front.css);
+@import url(../blocks/card-back/card-back.css);
+@import url(../blocks/card-front-animation/card-front-animation.css);
+@import url(../blocks/card-back-animation/card-back-animation.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

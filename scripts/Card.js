@@ -41,8 +41,8 @@ class Card {
 const cardsContainer = document.querySelector('.cards');
 
 function addCard(color) {
-  const card = new Card('.template', '.front', '.back',
-    'front-animation', 'back-animation', color);
+  const card = new Card('.template', '.card-front', '.card-back',
+    'front-animation', 'card-back-animation', color);
   const cardElement = card.createCard();
   cardsContainer.prepend(cardElement);
 }
