@@ -2,6 +2,7 @@
   border-radius: 10px;
   position: relative;
 
+  /*width: calc(100%/4 - 80px);*/
 }
 
 .card:hover {
