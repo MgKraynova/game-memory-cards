@@ -1,6 +1,8 @@
 .popup__start-button {
   border-radius: 5px;
   margin-top: 25px;
+  padding: 10px;
+  background-color: rgb(246,246,246);
 }
 
 .popup__start-button:hover {

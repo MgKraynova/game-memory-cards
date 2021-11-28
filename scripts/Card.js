@@ -22,20 +22,12 @@ class Card {
     back.classList.toggle(this._backImageAnimationClass);
   }
 
-  // _setEventListeners() {
-  //   this._element.addEventListener('click', () => {
-  //     this.addFlipAnimation();
-  //   });
-  // }
-
   _shuffleCard() {
     const randomPos = Math.floor(Math.random() * 12);
     this._element.style.order = randomPos;
   }
 
     createCard() {
-      //this._setEventListeners();
-
       const frontImage = this._element.querySelector(this._frontImageSelector);
       frontImage.style.backgroundColor = this._colorForFrontCard;
 
@@ -46,17 +38,19 @@ class Card {
     }
 }
 
-const blockCards = document.querySelector('.cards');
+const cardsContainer = document.querySelector('.cards');
 
 function addCard(color) {
   const card = new Card('.template', '.front', '.back',
     'front-animation', 'back-animation', color);
   const cardElement = card.createCard();
-  blockCards.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
-colorsForFrontImages.forEach((color) => {
-  addCard(color);
-});
+function createColorCards(colors) {
+  colors.forEach((color) => {
+    addCard(color);
+  });
+}
 
-
+createColorCards(colorsForFrontImages);

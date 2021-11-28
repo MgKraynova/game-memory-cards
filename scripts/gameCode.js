@@ -9,7 +9,9 @@ const closeButton = document.querySelector('.popup__close-button');
 const startGameButton = document.querySelector('.popup__start-button');
 
 closeButton.addEventListener('click', closePopup);
-startGameButton.addEventListener('click', startNewGame);
+startGameButton.addEventListener('click', () => {
+  startNewGame(colorsForFrontImages)
+});
 
 
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
@@ -101,6 +103,12 @@ function updateCounter() {
   counterOfDisabledCards.innerText = `${numberOfDisabledCards}`;
 }
 
+function setCounterToZero() {
+  numberOfFoundMatches = 0;
+  numberOfDisabledCards = 0;
+  updateCounter();
+}
+
 function checkIfCardsAreMatched() {
   if (firstCard.id === secondCard.id) {
     console.log('карты одинаковые');
@@ -122,23 +130,20 @@ function checkIfCardsAreMatched() {
 }
 
 function deleteCards() {
-  cards.forEach((card) => {
-    card.remove();
+  Array.from(document.querySelectorAll('.card')).forEach((card) => {
+   card.remove();
    card.removeAttribute('data-isDisabled');
   })
-  numberOfFoundMatches = 0;
-  numberOfDisabledCards = 0;
 }
 
-function startNewGame() {
+function startNewGame(colors) {
   deleteCards();
-  colorsForFrontImages.forEach((color) => {
-    addCard(color);
-  });
-  closePopup();
-  Array.from(document.querySelectorAll('.cards')).forEach((card) => {
+  setCounterToZero();
+  createColorCards(colors);
+  Array.from(document.querySelectorAll('.card')).forEach((card) => {
     card.addEventListener('click', checkCard); //todo найти баг
   });
+  closePopup();
 }
 
 
