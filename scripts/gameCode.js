@@ -7,9 +7,7 @@ let numberOfDisabledCards = 0;
 
 const debug = false; // константа для отладки
 const cards = document.querySelectorAll('.card');
-const popup = document.querySelector('.popup');
-const closeButton = document.querySelector('.popup__close-button');
-const startGameButton = document.querySelector('.popup__start-button');
+
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
 const totalNumberOfCards = document.getElementById('total-number-of-cards');
 
@@ -20,28 +18,10 @@ totalNumberOfCards.innerText = `${cards.length}`;
 
 // ФУНКЦИИ
 
-// Функции, относящиеся к попапу
-function openPopup() {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByPressEsc);
-}
-
-function closePopupByPressEsc(evt) {
-  const popup = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape') {
-    closePopup(popup);
-  }
-}
-
-function closePopup() {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByPressEsc);
-}
-
 // Функции, относящиеся к функционалу игры
 function isAllCardsOpened() {
   if (numberOfFoundMatches === (cards.length/2)) {
-    openPopup();
+    openPopup(popupGameVictory);
   }
 }
 
@@ -153,7 +133,7 @@ function startNewGame(colors) {
   Array.from(document.querySelectorAll('.card')).forEach((card) => {
     card.addEventListener('click', checkCard);
   });
-  closePopup();
+  closePopup(popupGameVictory); // todo нужно рефакторить, либо передавать как аргумент, либо менять
 }
 
 // Иное
@@ -161,7 +141,7 @@ cards.forEach((card) => {
   card.addEventListener('click', checkCard);
 })
 
-closeButton.addEventListener('click', closePopup);
+
 startGameButton.addEventListener('click', () => {
   startNewGame(colorsForFrontImages)
 });

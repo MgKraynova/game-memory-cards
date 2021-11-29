@@ -5,3 +5,11 @@
   src: url("GothamProNarrow-Bold.woff2") format("woff2"),
   url("GothamProNarrow-Bold.woff") format("woff");
 }
+
+@font-face {
+  font-family: "Gotham";
+  font-style: normal;
+  font-weight: normal;
+  src: url("GothamPro.woff2") format("woff2"),
+  url("GothamPro.woff") format("woff");
+}

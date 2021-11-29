@@ -1,7 +1,5 @@
 .popup__content {
   box-sizing: border-box;
-  width: 415px;
-  min-height: 230px;
   background-color: #092036;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -12,20 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
-@media screen and (max-width: 579px) {
-  .popup__content {
-    width: 282px;
-    min-height: 235px;
-  }
-}
 
-@media screen and (max-width: 415px) {
-  .popup__content {
-    width: 220px;
-    padding-right: 10px;
-    padding-left: 10px;
-    min-height: 205px;
-  }
-}

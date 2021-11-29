@@ -1,4 +1,13 @@
 .footer__link {
-  text-decoration: none;
-  color: rgb(126, 130, 186);
+  display: block;
+  font-size: 18px;
+}
+
+.footer__link:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.footer__link:first-of-type {
+  margin-bottom: 5px;
 }
