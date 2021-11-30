@@ -1,11 +1,17 @@
 .popup__start-button {
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 25px;
   padding: 15px;
-  background-color: rgb(246,246,246);
   font-size: 24px;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  transition: 0.25s;
 }
 
-.popup__start-button:hover {
+.popup__start-button:hover,
+.popup__start-button:focus {
+  box-shadow: inset 0 0 0 2em rgb(246, 246, 246);
+  color: rgb(5, 19, 32);
   cursor: pointer;
 }
