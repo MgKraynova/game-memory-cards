@@ -11,6 +11,8 @@ const cards = document.querySelectorAll('.card');
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
 const totalNumberOfCards = document.getElementById('total-number-of-cards');
 
+const linkForStartGame = document.querySelector('.footer__link_type_new-game');
+
 // НАЧАЛЬНЫЕ ЗНАЧЕНИЯ ПЕРЕМЕННЫХ
 
 counterOfDisabledCards.innerText = '0';
@@ -143,5 +145,9 @@ cards.forEach((card) => {
 
 startGameButton.addEventListener('click', () => {
   startNewGame(colorsForFrontImages)
+});
+
+linkForStartGame.addEventListener('click', () => {
+  setTimeout(startNewGame, 500, colorsForFrontImages);
 });
 
