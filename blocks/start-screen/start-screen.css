@@ -1,0 +1,9 @@
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  height: 100vh;
+  transition: margin 0.6s ease-out;
+}

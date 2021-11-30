@@ -1,0 +1,16 @@
+.button {
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 24px;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  transition: 0.25s;
+}
+
+.button:hover,
+.button:active {
+  box-shadow: inset 0 0 0 2em rgb(246, 246, 246);
+  color: rgb(5, 19, 32);
+  cursor: pointer;
+}

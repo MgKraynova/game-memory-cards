@@ -3,6 +3,21 @@
 
 @import url(../blocks/page/page.css);
 
+@import url(../blocks/move-screen-up/move-screen-up.css);
+
+@import url(../blocks/button/button.css);
+@import url(../blocks/title/title.css);
+
+@import url(../blocks/start-screen/start-screen.css);
+@import url(../blocks/start-screen/__title/start-screen__title.css);
+@import url(../blocks/start-screen/__button/start-screen__button.css);
+
+@import url(../blocks/time-screen/time-screen.css);
+@import url(../blocks/time-screen/__button/time-screen__button.css);
+@import url(../blocks/time-screen/__wrapper/time-screen__wrapper.css);
+
+@import url(../blocks/game-screen/game-screen.css);
+
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__title/header__title.css);
 @import url(../blocks/header/__text/header__text.css);
