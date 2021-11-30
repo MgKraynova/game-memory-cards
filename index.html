@@ -9,11 +9,14 @@
 <body class="page">
 <header class="header">
   <h1 class="header__title">Игра "Найди парные картинки"</h1>
-  <p class="header__text">Вы отгадали
-    <span class="header__span-text" id="counter-of-disabled-cards"></span>
-    из
-    <span class="header__span-text" id="total-number-of-cards"></span>
-    карточек</p>
+  <div class="header__wrapper">
+    <p class="header__text">Вы отгадали
+      <span class="header__span-text" id="counter-of-disabled-cards"></span>
+      из
+      <span class="header__span-text" id="total-number-of-cards"></span>
+      карточек</p>
+    <p class="header__text">Таймер <span class="header__span-text">00:00</span></p>
+  </div>
 </header>
 <main class="cards">
   <template class="template">

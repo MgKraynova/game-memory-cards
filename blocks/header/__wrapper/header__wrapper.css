@@ -1,0 +1,6 @@
+.header__wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  width: 100%;
+}
