@@ -141,7 +141,6 @@ cards.forEach((card) => {
   card.addEventListener('click', checkCard);
 })
 
-
 startGameButton.addEventListener('click', () => {
   startNewGame(colorsForFrontImages)
 });

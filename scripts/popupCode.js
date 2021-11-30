@@ -38,3 +38,35 @@ closeButtonInPopupGameRules.addEventListener('click',() => {
 linkForGameRules.addEventListener('click', () => {
   openPopup(popupGameRules);
 })
+
+// class Popup {
+//   constructor(popupSelector, classToMakePopupVisible, closeButtonSelector, selectorForElementThatOpensPopup) {
+//     this._popup = document.querySelector(popupSelector);
+//     this._classToMakePopupVisible = classToMakePopupVisible;
+//     this._closeButton = this._popup.querySelector(closeButtonSelector);
+//     this._selectorForElementThatOpensPopup = selectorForElementThatOpensPopup;
+//     this._elementThatOpensPopup = document.querySelector(this._selectorForElementThatOpensPopup);
+//   }
+//
+//   openPopup() {
+//     this._popup.classList.add(this._classToMakePopupVisible);
+//     this.setEventListeners();
+//     document.addEventListener('keydown', this._handleEscClose);
+//   }
+//
+//   closePopup() {
+//     this._popup.classList.remove(this._classToMakePopupVisible);
+//     document.removeEventListener('keydown', this._handleEscClose);
+//   }
+//
+//   _handleEscClose() {
+//     if (evt.key === 'Escape') {
+//       this.closePopup()
+//     }
+//   }
+//
+//   setEventListeners() {
+//     this._closeButton.addEventListener('click', this.closePopup);
+//   }
+// }
+
