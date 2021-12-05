@@ -41,6 +41,7 @@
 @import url(../blocks/popup/__content/popup__content.css);
 @import url(../blocks/popup/__content/_type/popup__content_type_game-rules.css);
 @import url(../blocks/popup/__content/_type/popup__content_type_game-victory.css);
+@import url(../blocks/popup/__content/_type/popup__content_type_game-loose.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_game-rules.css);

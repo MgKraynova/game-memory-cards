@@ -143,9 +143,9 @@ cards.forEach((card) => {
   card.addEventListener('click', checkCard);
 })
 
-startGameButton.addEventListener('click', () => {
-  startNewGame(colorsForFrontImages)
-});
+// startGameButton.addEventListener('click', () => {
+//   startNewGame(colorsForFrontImages)
+// });
 
 linkForStartGame.addEventListener('click', () => {
   setTimeout(startNewGame, 500, colorsForFrontImages);

@@ -5,7 +5,11 @@ const closeButtonInPopupGameVictory = popupGameVictory.querySelector('.popup__cl
 const popupGameRules = document.querySelector('.popup_type_game-rules');
 const closeButtonInPopupGameRules = popupGameRules.querySelector('.popup__close-button');
 
-const startGameButton = document.querySelector('.popup__start-button');
+const popupGameLoose = document.querySelector('.popup_type_game-loose');
+const closeButtonInPopupGameLoose = popupGameLoose.querySelector('.popup__close-button');
+
+// const startGameButton = document.querySelector('.popup__start-button');
+const startGameButtons = document.querySelectorAll('.popup__start-button');
 const linkForGameRules = document.querySelector('.footer__link_type_game-rules');
 
 // Функции, относящиеся к попапу
@@ -34,10 +38,20 @@ closeButtonInPopupGameRules.addEventListener('click',() => {
   closePopup(popupGameRules);
 });
 
+closeButtonInPopupGameLoose.addEventListener('click',() => {
+  closePopup(popupGameLoose);
+});
 
 linkForGameRules.addEventListener('click', () => {
   openPopup(popupGameRules);
+});
+
+startGameButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+ startNewGame(colorsForFrontImages)
+ });
 })
+
 
 // class Popup {
 //   constructor(popupSelector, classToMakePopupVisible, closeButtonSelector, selectorForElementThatOpensPopup) {

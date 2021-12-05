@@ -15,9 +15,9 @@
 <div class="time-screen">
   <h1 class="time-screen__title title">Выберите длительность игры</h1>
   <div class="time-screen__wrapper">
-    <button type="button" class="time-screen__button button">30 сек</button>
-    <button type="button" class="time-screen__button button">45 сек</button>
-    <button type="button" class="time-screen__button button">1 мин</button>
+    <button type="button" class="time-screen__button button" data-time="30">30 сек</button>
+    <button type="button" class="time-screen__button button" data-time="45">45 сек</button>
+    <button type="button" class="time-screen__button button" data-time="60">1 мин</button>
   </div>
 </div>
 
@@ -30,7 +30,7 @@
       из
       <span class="header__span-text" id="total-number-of-cards"></span>
       карточек</p>
-    <p class="header__text">Таймер <span class="header__span-text">00:00</span></p>
+    <p class="header__text">Таймер <span class="header__span-text" id="timer">00:00</span></p>
   </div>
 </header>
   <main class="cards">
@@ -74,10 +74,23 @@
     <p class="popup__text">В начале игры карточки раскладываются на экране случайным образом рубашкой вверх.</p>
     <p class="popup__text">Игрок открывает любые две карточки. Если цвет на них совпадает, то они остаются открытыми,
       и игрок открывает следующие две карточки. Если карточки не совпадают по цвету,
-      то обе карточки переворачиваются обратно, и игрок заново начинает ход.</p>
-    <p class="popup__text">Игра заканчивается, когда все карты на столе открыты.</p>
+      то обе карточки переворачиваются обратно, и игрок заново начинает ход.
+      Ирок должен открыть все карточки до того, как истечет время</p>
+    <p class="popup__text">Игра заканчивается, когда все карты на столе открыты, или если истекло время.</p>
   </div>
 </div>
+
+<div class="popup popup_type_game-loose">
+  <div class="popup__content popup__content_type_game-loose">
+    <button
+      type="button"
+      class="popup__close-button"
+    ></button>
+    <h1 class="popup__title popup__title_type_game-loose">К сожалению, вы проиграли...</h1>
+    <button type="button" class="popup__start-button button">Начать заново</button>
+  </div>
+</div>
+
 <script src="scripts/index.js"></script>
 <script src="scripts/colorsForCards.js"></script>
 <script src="scripts/Card.js"></script>
