@@ -1,3 +1,6 @@
+import {popupGameVictory} from "./popupCode.js";
+import colorsForFrontImages from "./colorsForCards.js";
+import createColorCards from "./Card.js";
 // ПЕРЕМЕННЫЕ
 
 let firstCard;
@@ -23,7 +26,7 @@ totalNumberOfCards.innerText = `${cards.length}`;
 // Функции, относящиеся к функционалу игры
 function isAllCardsOpened() {
   if (numberOfFoundMatches === (cards.length/2)) {
-    openPopup(popupGameVictory);
+    popupGameVictory.openPopup();
   }
 }
 
@@ -135,7 +138,7 @@ function startNewGame(colors) {
   Array.from(document.querySelectorAll('.card')).forEach((card) => {
     card.addEventListener('click', checkCard);
   });
-  closePopup(popupGameVictory); // todo нужно рефакторить, либо передавать как аргумент, либо менять
+  popupGameVictory.closePopup(); // todo нужно рефакторить, либо передавать как аргумент, либо менять
 }
 
 // Иное
@@ -151,3 +154,4 @@ linkForStartGame.addEventListener('click', () => {
   setTimeout(startNewGame, 500, colorsForFrontImages);
 });
 
+export default startNewGame;

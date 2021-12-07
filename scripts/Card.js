@@ -1,3 +1,4 @@
+import colorsForFrontImages from "./colorsForCards.js";
 class Card {
   constructor(cardSelector, frontImageSelector, backImageSelector, frontImageAnimationClass, backImageAnimationClass, colorForFrontCard) {
     this._cardSelector = cardSelector;
@@ -54,3 +55,5 @@ function createColorCards(colors) {
 }
 
 createColorCards(colorsForFrontImages);
+
+export default createColorCards;

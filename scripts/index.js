@@ -1,3 +1,5 @@
+import {popupGameLoose} from "./popupCode.js";
+
 const startScreen = document.querySelector('.start-screen');
 const startButtonAtFirstScreen = document.querySelector('.start-screen__button');
 
@@ -34,7 +36,7 @@ timeButtonsContainer.addEventListener('click', (event) => {
 
 function decreaseTime() {
   if (timeForGame === 0) {
-    openPopup(popupGameLoose);
+    popupGameLoose.openPopup();
     console.log('открываем попап о проигрыше');
     document.querySelectorAll('.card').forEach((card) => {
     card.removeEventListener('click', checkCard);

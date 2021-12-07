@@ -25,3 +25,4 @@ const colorsForFrontImages = [
   '#577590ff'
 ]
 
+export default colorsForFrontImages;
