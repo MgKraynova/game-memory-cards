@@ -1,5 +1,35 @@
-import {popupGameLoose} from "./popupCode.js";
-import {checkCard} from "./gameCode.js";
+import colorsForFrontImages from "../utils/colorsForCards.js";
+import SectionForCards from "./SectionForCards.js";
+import PopupWithSubmitButton from "./PopupWithSubmitButton.js";
+import Popup from "./Popup.js";
+import Card from "./Card.js";
+
+// Создание экземпляра Section
+const cardList = new SectionForCards(addCard, '.cards');
+cardList.renderItems(colorsForFrontImages);
+
+//Создание экземпляров попапов
+const popupGameVictory = new PopupWithSubmitButton('.popup_type_game-victory',
+  handleStartGameButton);
+popupGameVictory.setEventListeners();
+
+const popupGameRules = new Popup('.popup_type_game-rules');
+popupGameRules.setEventListeners();
+
+const popupGameLoose = new PopupWithSubmitButton('.popup_type_game-loose',
+  handleStartGameButton);
+popupGameLoose.setEventListeners();
+
+
+const startGameButtons = document.querySelectorAll('.popup__start-button');
+const linkForGameRules = document.querySelector('.footer__link_type_game-rules');
+
+// Функции, относящиеся к попапу
+
+linkForGameRules.addEventListener('click', () => {
+  popupGameRules.openPopup();
+});
+
 
 const startScreen = document.querySelector('.start-screen');
 const startButtonAtFirstScreen = document.querySelector('.start-screen__button');
@@ -9,6 +39,10 @@ const timeScreen = document.querySelector('.time-screen');
 const timer = document.getElementById('timer');
 
 let timeForGame;
+
+function handleStartGameButton() {
+  startNewGame(colorsForFrontImages);
+}
 
 function moveScreenUp(screen) {
   screen.classList.add('move-screen-up');
@@ -58,3 +92,208 @@ function decreaseTime() {
 function setTime(value) {
   timer.innerHTML = `00:${value}`;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ПЕРЕМЕННЫЕ
+
+let firstCard;
+let secondCard;
+let numberOfFoundMatches = 0;
+let numberOfDisabledCards = 0;
+
+const debug = false; // константа для отладки
+const cards = document.querySelectorAll('.card');
+
+const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
+const totalNumberOfCards = document.getElementById('total-number-of-cards');
+
+const linkForStartGame = document.querySelector('.footer__link_type_new-game');
+
+// НАЧАЛЬНЫЕ ЗНАЧЕНИЯ ПЕРЕМЕННЫХ
+
+counterOfDisabledCards.innerText = '0';
+totalNumberOfCards.innerText = `${cards.length}`;
+
+// ФУНКЦИИ
+
+// Функции, относящиеся к функционалу игры
+function isAllCardsOpened() {
+  if (numberOfFoundMatches === (cards.length/2)) {
+    popupGameVictory.openPopup();
+  }
+}
+
+function checkCard() {
+  updateCounter();
+  if (!firstCard) {
+    firstCard = this;
+    flipCard(firstCard);
+    if (debug) {
+      console.log('первая карта');
+    }
+  } else if (firstCard && !(this === firstCard)) {
+    secondCard = this;
+    flipCard(secondCard);
+    checkIfCardsAreMatched();
+    if (debug) {
+      console.log('вторая карта');
+    }
+  } else if (this === firstCard) {
+    if (debug) {
+      console.log('вы уже открыли эту карточку, мы ее закрываем');
+    }
+    firstCard = null;
+    unFlipCard(this);
+  }
+}
+
+function flipCard(card) {
+  const front = card.querySelector('.card-front');
+  const back = card.querySelector('.card-back');
+
+  front.classList.add('card-front-animation');
+  back.classList.add('card-back-animation');
+}
+
+function unFlipCardWithTimeout(card) {
+  setTimeout(unFlipCard, 1200, card);
+}
+
+function unFlipCard(card) {
+  const front = card.querySelector('.card-front');
+  const back = card.querySelector('.card-back');
+  front.classList.remove('card-front-animation');
+  back.classList.remove('card-back-animation');
+}
+
+function makeCardsDisabled(firstCard, secondCard) {
+  firstCard.removeEventListener('click', checkCard);
+  secondCard.removeEventListener('click', checkCard);
+  if (debug) {
+    console.log('блокируем карты');
+  }
+  numberOfDisabledCards = numberOfDisabledCards + 2;
+
+  firstCard.setAttribute('data-isDisabled', 'true');
+  secondCard.setAttribute('data-isDisabled', 'true');
+}
+
+function showAnimationForDisabledCards() {
+  if (debug) {
+    console.log('Эта карта заблокирована, выберете другую карту');
+  }
+  // todo добавить анимацию для заблокированных карт
+}
+
+function updateCounter() {
+  counterOfDisabledCards.innerText = `${numberOfDisabledCards}`;
+}
+
+function setCounterToZero() {
+  numberOfFoundMatches = 0;
+  numberOfDisabledCards = 0;
+  updateCounter();
+}
+
+function checkIfCardsAreMatched() {
+  if (firstCard.id === secondCard.id) {
+    if (debug) {
+      console.log('карты одинаковые');
+    }
+    makeCardsDisabled(firstCard, secondCard);
+    firstCard.addEventListener('click', showAnimationForDisabledCards);
+    secondCard.addEventListener('click', showAnimationForDisabledCards);
+    numberOfFoundMatches = numberOfFoundMatches + 1;
+    updateCounter();
+    setTimeout(isAllCardsOpened, 1000);
+  } else {
+    if (debug) {
+      console.log('карты разные');
+    }
+    unFlipCardWithTimeout(firstCard);
+    unFlipCardWithTimeout(secondCard);
+  }
+  firstCard = null;
+  secondCard = null;
+}
+
+function deleteCards() {
+  Array.from(document.querySelectorAll('.card')).forEach((card) => {
+    card.remove();
+    card.removeAttribute('data-isDisabled');
+  })
+}
+
+function startNewGame(colors) {
+  deleteCards();
+  setCounterToZero();
+  cardList.renderItems(colors);
+  // createColorCards(colors);
+  Array.from(document.querySelectorAll('.card')).forEach((card) => {
+    card.addEventListener('click', checkCard);
+  });
+  popupGameVictory.closePopup(); // todo нужно рефакторить, либо передавать как аргумент, либо менять
+}
+
+// Иное
+cards.forEach((card) => {
+  card.addEventListener('click', checkCard);
+})
+
+// startGameButton.addEventListener('click', () => {
+//   startNewGame(colorsForFrontImages)
+// });
+
+linkForStartGame.addEventListener('click', () => {
+  setTimeout(startNewGame, 500, colorsForFrontImages);
+});
+
+export {startNewGame, checkCard};
+
+function addCard(color) {
+  const card = new Card('.template', color);
+
+  const cardElement = card.createCard();
+
+  cardList.addItem(cardElement);
+}
+
+function createColorCards(colors) {
+  colors.forEach((color) => {
+    addCard(color);
+  });
+}
+
+createColorCards(colorsForFrontImages);
+

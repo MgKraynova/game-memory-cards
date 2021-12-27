@@ -1,4 +1,3 @@
-import colorsForFrontImages from "../utils/colorsForCards.js";
 class Card {
   constructor(cardSelector, colorForFrontCard) {
     this._cardSelector = cardSelector;
@@ -9,14 +8,6 @@ class Card {
   _getTemplate() {
     const cardElement = document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);
     return cardElement;
-  }
-
-  addFlipAnimation() {
-    const front = this._element.querySelector('.card-front');
-    const back = this._element.querySelector('.card-back');
-
-    front.classList.toggle('front-animation');
-    back.classList.toggle('card-back-animation');
   }
 
   _shuffleCard() {
@@ -35,20 +26,4 @@ class Card {
     }
 }
 
-const cardsContainer = document.querySelector('.cards');
-
-function addCard(color) {
-  const card = new Card('.template', color);
-  const cardElement = card.createCard();
-  cardsContainer.prepend(cardElement);
-}
-
-function createColorCards(colors) {
-  colors.forEach((color) => {
-    addCard(color);
-  });
-}
-
-createColorCards(colorsForFrontImages);
-
-export default createColorCards;
+export default Card;
