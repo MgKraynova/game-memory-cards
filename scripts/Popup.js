@@ -1,19 +1,15 @@
 class Popup {
-  constructor(popupSelector, classToOpenPopup, closeButtonSelector, popupStartGameButtonSelector, handleButtonFunction) {
+  constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
-    this._classToOpenPopup = classToOpenPopup;
-    this._closeButton = this._popup.querySelector(closeButtonSelector);
-    this._popupButton = this._popup.querySelector(popupStartGameButtonSelector);
-    this._handleButtonFunction = handleButtonFunction;
+    this._closeButton = this._popup.querySelector('.popup__close-button');
   }
 
   openPopup() {
-    this._popup.classList.add(this._classToOpenPopup);
-    this.setEventListeners();
+    this._popup.classList.add('popup_opened');
   }
 
   closePopup() {
-    this._popup.classList.remove(this._classToOpenPopup);
+    this._popup.classList.remove('popup_opened');
     this._removeEventListeners();
   }
 
@@ -41,13 +37,6 @@ class Popup {
     this._popup.addEventListener('mousedown', (evt) => {
       this._closePopupByClickOnOverlay(evt);
     });
-
-    if (this._handleButtonFunction) {
-      this._popupButton.addEventListener('click', () => {
-        this._handleButtonFunction();
-        this.closePopup();
-      });
-    }
   }
 
   _removeEventListeners() {
@@ -62,8 +51,6 @@ class Popup {
     this._popup.removeEventListener('mousedown', (evt) => {
       this._closePopupByClickOnOverlay(evt);
     });
-
-    this._popupButton.removeEventListener('click', this._handleButtonFunction);
   }
 }
 

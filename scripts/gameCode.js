@@ -1,5 +1,5 @@
 import {popupGameVictory} from "./popupCode.js";
-import colorsForFrontImages from "./colorsForCards.js";
+import colorsForFrontImages from "../utils/colorsForCards.js";
 import createColorCards from "./Card.js";
 // ПЕРЕМЕННЫЕ
 
@@ -154,4 +154,4 @@ linkForStartGame.addEventListener('click', () => {
   setTimeout(startNewGame, 500, colorsForFrontImages);
 });
 
-export default startNewGame;
+export {startNewGame, checkCard};

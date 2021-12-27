@@ -1,4 +1,4 @@
-import colorsForFrontImages from "./colorsForCards.js";
+import colorsForFrontImages from "../utils/colorsForCards.js";
 class Card {
   constructor(cardSelector, frontImageSelector, backImageSelector, frontImageAnimationClass, backImageAnimationClass, colorForFrontCard) {
     this._cardSelector = cardSelector;

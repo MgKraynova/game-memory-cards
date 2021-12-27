@@ -1,4 +1,5 @@
 import {popupGameLoose} from "./popupCode.js";
+import {checkCard} from "./gameCode.js";
 
 const startScreen = document.querySelector('.start-screen');
 const startButtonAtFirstScreen = document.querySelector('.start-screen__button');
@@ -12,6 +13,8 @@ let timeForGame;
 function moveScreenUp(screen) {
   screen.classList.add('move-screen-up');
 };
+
+
 
 startButtonAtFirstScreen.addEventListener('click', () => {
   moveScreenUp(startScreen);
@@ -41,8 +44,9 @@ function decreaseTime() {
     document.querySelectorAll('.card').forEach((card) => {
     card.removeEventListener('click', checkCard);
       console.log('блокируем карты');
+      timeForGame = -1;
     });
-  } else {
+  } else if (timeForGame > 0){
     let current = --timeForGame;
     if (current < 10) {
       current = `0${current}`;

@@ -1,16 +1,20 @@
 import Popup from "./Popup.js";
-import startNewGame from "./gameCode.js";
-import colorsForFrontImages from "./colorsForCards.js";
+import PopupWithSubmitButton from "./PopupWithSubmitButton.js";
+import {startNewGame} from "./gameCode.js";
+import colorsForFrontImages from "../utils/colorsForCards.js";
 // ПЕРЕМЕННЫЕ
 
-const popupGameVictory = new Popup('.popup_type_game-victory', 'popup_opened',
-  '.popup__close-button', '.popup__start-button', handleStartGameButton);
+const popupGameVictory = new PopupWithSubmitButton('.popup_type_game-victory',
+   handleStartGameButton);
+popupGameVictory.setEventListeners();
 
-const popupGameRules = new Popup('.popup_type_game-rules', 'popup_opened',
-  '.popup__close-button');
+const popupGameRules = new Popup('.popup_type_game-rules');
+popupGameRules.setEventListeners();
 
-const popupGameLoose = new Popup('.popup_type_game-loose', 'popup_opened',
-  '.popup__close-button', '.popup__start-button', handleStartGameButton);
+const popupGameLoose = new PopupWithSubmitButton('.popup_type_game-loose',
+    handleStartGameButton);
+popupGameLoose.setEventListeners();
+
 
 // const startGameButton = document.querySelector('.popup__start-button');
 const startGameButtons = document.querySelectorAll('.popup__start-button');

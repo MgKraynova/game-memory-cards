@@ -4,6 +4,7 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/move-screen-up/move-screen-up.css);
+@import url(../blocks/move-screen-down/move-screen-down.css);
 
 @import url(../blocks/button/button.css);
 @import url(../blocks/title/title.css);
