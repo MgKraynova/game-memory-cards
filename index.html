@@ -2,40 +2,46 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Найди пару</title>
-  <link rel="stylesheet" href="pages/index.css" />
+  <link rel="stylesheet" href="pages/index.css"/>
 </head>
 <body class="page">
 <div class="start-screen">
   <h1 class="start-screen__title title">Игра "Найди парные картинки"</h1>
-  <button type="button" class="start-screen__button button">Начать игру</button>
+  <button type="button" class="start-screen__button button"><a href="#time-screen" class="link">Начать игру</a></button>
 </div>
 
 <div class="time-screen" id="time-screen">
   <h1 class="time-screen__title title">Выберите длительность игры</h1>
   <div class="time-screen__wrapper">
-    <button type="button" class="time-screen__button button" data-time="30">30 сек</button>
-    <button type="button" class="time-screen__button button" data-time="45">45 сек</button>
-    <button type="button" class="time-screen__button button" data-time="60">1 мин</button>
+    <button type="button" class="time-screen__button button">
+      <a href="#game-screen" class="link time-screen__link" data-time="30">30 сек</a>
+    </button>
+    <button type="button" class="time-screen__button button">
+      <a href="#game-screen" class="link time-screen__link" data-time="45">45 сек</a>
+    </button>
+    <button type="button" class="time-screen__button button">
+      <a href="#game-screen" class="link time-screen__link" data-time="60">1 мин</a>
+    </button>
   </div>
 </div>
 
-<div class="game-screen">
+<div class="game-screen" id="game-screen">
   <header class="header">
-  <h2 class="header__title">Игра "Найди парные картинки"</h2>
-  <div class="header__wrapper">
-    <p class="header__text">Вы отгадали
-      <span class="header__span-text" id="counter-of-disabled-cards"></span>
-      из
-      <span class="header__span-text" id="total-number-of-cards"></span>
-      карточек</p>
-    <p class="header__text">Таймер <span class="header__span-text" id="timer">00:00</span></p>
-  </div>
-</header>
+    <h2 class="header__title">Игра "Найди парные картинки"</h2>
+    <div class="header__wrapper">
+      <p class="header__text">Вы отгадали
+        <span class="header__span-text" id="counter-of-disabled-cards">0</span>
+        из
+        <span class="header__span-text" id="total-number-of-cards"></span>
+        карточек</p>
+      <p class="header__text">Таймер <span class="header__span-text" id="timer">00:00</span></p>
+    </div>
+  </header>
   <main class="cards">
     <template class="template">
-      <div class ="card">
+      <div class="card">
         <div class="card-back">
         </div>
         <div class="card-front">
@@ -46,7 +52,7 @@
   <footer class="footer">
     <ul class="footer__links">
       <li class="footer__link footer__link_type_game-rules">Правила игры</li>
-      <li class="footer__link footer__link_type_new-game">Начать заново</li>
+      <li class="footer__link footer__link_type_new-game"><a class="link" href="#time-screen">Начать заново</a></li>
     </ul>
     <p class="footer__text">© 2021 Kraynova Marina</p>
   </footer>
@@ -60,7 +66,7 @@
       class="popup__close-button"
     ></button>
     <h1 class="popup__title popup__title_type_game-victory">Поздравляем! Вы победили!</h1>
-    <button type="button" class="popup__start-button button">Начать заново</button>
+    <button type="button" class="popup__start-button button"><a class="link" href="#time-screen">Начать заново</a></button>
   </div>
 </div>
 
@@ -87,7 +93,7 @@
       class="popup__close-button"
     ></button>
     <h1 class="popup__title popup__title_type_game-loose">К сожалению, вы проиграли...</h1>
-    <button type="button" class="popup__start-button button">Начать заново</button>
+    <button type="button" class="popup__start-button button"><a class="link" href="#time-screen">Начать заново</a></button>
   </div>
 </div>
 

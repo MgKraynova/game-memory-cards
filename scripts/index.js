@@ -4,9 +4,38 @@ import PopupWithSubmitButton from "./PopupWithSubmitButton.js";
 import Popup from "./Popup.js";
 import Card from "./Card.js";
 
+// ПЕРЕМЕННЫЕ
+
+const linkForGameRules = document.querySelector('.footer__link_type_game-rules');
+const linkForStartGame = document.querySelector('.footer__link_type_new-game');
+
+const timeButtonsContainer = document.querySelector('.time-screen__wrapper');
+const timer = document.getElementById('timer');
+
+let timeForGame;
+let firstCard;
+let secondCard;
+let numberOfFoundMatches = 0;
+let numberOfDisabledCards = 0;
+
+const debug = false; // константа для отладки
+
+const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
+const totalNumberOfCards = document.getElementById('total-number-of-cards');
+
+// НАЧАЛЬНЫЕ ЗНАЧЕНИЯ ПЕРЕМЕННЫХ
+
+// counterOfDisabledCards.textContent = '0';
+
+
+// СОЗДАНИЕ ЭКЗЕМПЛЯРОВ КЛАССА
+
 // Создание экземпляра Section
-const cardList = new SectionForCards(addCard, '.cards');
+const cardList = new SectionForCards(createCard, '.cards');
 cardList.renderItems(colorsForFrontImages);
+
+const cards = document.querySelectorAll('.card');
+totalNumberOfCards.textContent = `${cards.length}`;
 
 //Создание экземпляров попапов
 const popupGameVictory = new PopupWithSubmitButton('.popup_type_game-victory',
@@ -21,131 +50,34 @@ const popupGameLoose = new PopupWithSubmitButton('.popup_type_game-loose',
 popupGameLoose.setEventListeners();
 
 
-const startGameButtons = document.querySelectorAll('.popup__start-button');
-const linkForGameRules = document.querySelector('.footer__link_type_game-rules');
+//ФУНКЦИИ
 
-// Функции, относящиеся к попапу
+//Создание карточки
+function createCard(color) {
+  const card = new Card('.template', color, checkCard);
 
-linkForGameRules.addEventListener('click', () => {
-  popupGameRules.openPopup();
-});
+  const cardElement = card.createCard();
 
+  cardList.addItem(cardElement);
+}
 
-const startScreen = document.querySelector('.start-screen');
-const startButtonAtFirstScreen = document.querySelector('.start-screen__button');
+// function moveScreenUp(screen) {
+//   screen.classList.add('move-screen-up');
+// }
 
-const timeScreen = document.querySelector('.time-screen');
-// const timeButtons = document.querySelectorAll('.time-screen__button');
-const timer = document.getElementById('timer');
-
-let timeForGame;
+function startNewGame(colors) {
+  deleteCards();
+  setCounterToZero();
+  cardList.renderItems(colors);
+  // Array.from(document.querySelectorAll('.card')).forEach((card) => {
+  //   card.addEventListener('click', checkCard);
+  // });
+  popupGameVictory.closePopup(); // todo нужно рефакторить, либо передавать как аргумент, либо менять
+}
 
 function handleStartGameButton() {
   startNewGame(colorsForFrontImages);
 }
-
-function moveScreenUp(screen) {
-  screen.classList.add('move-screen-up');
-};
-
-
-
-startButtonAtFirstScreen.addEventListener('click', () => {
-  moveScreenUp(startScreen);
-})
-
-// timeButtons.forEach((button) => {
-//   button.addEventListener('click', () => {
-//     moveScreenUp(timeScreen);
-//   })
-// })
-
-const timeButtonsContainer = document.querySelector('.time-screen__wrapper');
-
-timeButtonsContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('time-screen__button')) {
-    timeForGame = parseInt(event.target.dataset.time);
-    console.log(event.target.dataset.time);
-    setInterval(decreaseTime, 1000);
-    moveScreenUp(timeScreen);
-  }
-})
-
-function decreaseTime() {
-  if (timeForGame === 0) {
-    popupGameLoose.openPopup();
-    console.log('открываем попап о проигрыше');
-    document.querySelectorAll('.card').forEach((card) => {
-    card.removeEventListener('click', checkCard);
-      console.log('блокируем карты');
-      timeForGame = -1;
-    });
-  } else if (timeForGame > 0){
-    let current = --timeForGame;
-    if (current < 10) {
-      current = `0${current}`;
-    }
-    setTime(current);
-  }
-}
-
-function setTime(value) {
-  timer.innerHTML = `00:${value}`;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ПЕРЕМЕННЫЕ
-
-let firstCard;
-let secondCard;
-let numberOfFoundMatches = 0;
-let numberOfDisabledCards = 0;
-
-const debug = false; // константа для отладки
-const cards = document.querySelectorAll('.card');
-
-const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
-const totalNumberOfCards = document.getElementById('total-number-of-cards');
-
-const linkForStartGame = document.querySelector('.footer__link_type_new-game');
-
-// НАЧАЛЬНЫЕ ЗНАЧЕНИЯ ПЕРЕМЕННЫХ
-
-counterOfDisabledCards.innerText = '0';
-totalNumberOfCards.innerText = `${cards.length}`;
-
-// ФУНКЦИИ
 
 // Функции, относящиеся к функционалу игры
 function isAllCardsOpened() {
@@ -255,45 +187,50 @@ function deleteCards() {
   })
 }
 
-function startNewGame(colors) {
-  deleteCards();
-  setCounterToZero();
-  cardList.renderItems(colors);
-  // createColorCards(colors);
-  Array.from(document.querySelectorAll('.card')).forEach((card) => {
-    card.addEventListener('click', checkCard);
-  });
-  popupGameVictory.closePopup(); // todo нужно рефакторить, либо передавать как аргумент, либо менять
-}
+// УСТАНОВКА СЛУШАТЕЛЕЙ СОБЫТИЙ
 
-// Иное
-cards.forEach((card) => {
-  card.addEventListener('click', checkCard);
-})
-
-// startGameButton.addEventListener('click', () => {
-//   startNewGame(colorsForFrontImages)
-// });
+linkForGameRules.addEventListener('click', () => {
+  popupGameRules.openPopup();
+});
 
 linkForStartGame.addEventListener('click', () => {
   setTimeout(startNewGame, 500, colorsForFrontImages);
 });
 
-export {startNewGame, checkCard};
+timeButtonsContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('time-screen__link')) {
+    timeForGame = parseInt(event.target.dataset.time);
+    console.log(event.target.dataset.time);
+    setInterval(decreaseTime, 1000);
+    // moveScreenUp(timeScreen);
+  }
+})
 
-function addCard(color) {
-  const card = new Card('.template', color);
+// Движение экранов
+// startButtonAtFirstScreen.addEventListener('click', () => {
+//   moveScreenUp(startScreen);
+// })
 
-  const cardElement = card.createCard();
-
-  cardList.addItem(cardElement);
+function decreaseTime() {
+  if (timeForGame === 0) {
+    popupGameLoose.openPopup();
+    console.log('открываем попап о проигрыше');
+    document.querySelectorAll('.card').forEach((card) => {
+    // card.removeEventListeners(); //todo убрать слушатели
+      console.log('блокируем карты');
+    });
+    timeForGame = -1;
+    console.log('уменьшили тайм фор гейм', timeForGame);
+  } else if (timeForGame > 0){
+    let current = --timeForGame;
+    if (current < 10) {
+      current = `0${current}`;
+    }
+    setTime(current);
+  }
 }
 
-function createColorCards(colors) {
-  colors.forEach((color) => {
-    addCard(color);
-  });
+function setTime(value) {
+  timer.innerHTML = `00:${value}`;
 }
-
-createColorCards(colorsForFrontImages);
 

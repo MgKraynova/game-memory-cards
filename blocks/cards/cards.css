@@ -4,7 +4,6 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 20px;
   height: 75vh;
-  outline: 1px solid green;
   perspective: 1000px;
   width: 100%;
   padding: 10px;

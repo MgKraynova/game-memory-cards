@@ -1,8 +1,9 @@
 class Card {
-  constructor(cardSelector, colorForFrontCard) {
+  constructor(cardSelector, colorForFrontCard, handleCardClickFunction) {
     this._cardSelector = cardSelector;
     this._element = this._getTemplate();
     this._colorForFrontCard = colorForFrontCard;
+    this._handleCardClick = handleCardClickFunction;
   }
 
   _getTemplate() {
@@ -15,15 +16,25 @@ class Card {
     this._element.style.order = randomPos;
   }
 
-    createCard() {
-      const frontImage = this._element.querySelector('.card-front');
-      frontImage.style.backgroundColor = this._colorForFrontCard;
+  _setEventListeners() {
+    this._element.addEventListener('click', this._handleCardClick);
+  }
 
-      this._element.setAttribute('id', `${this._colorForFrontCard}`);
-      this._shuffleCard();
+  removeEventListeners() {
+    this._element.removeEventListener('click', this._handleCardClick);
+  }
 
-      return this._element;
-    }
+  createCard() {
+    const frontImage = this._element.querySelector('.card-front');
+    frontImage.style.backgroundColor = this._colorForFrontCard;
+
+    this._element.setAttribute('id', `${this._colorForFrontCard}`);
+    this._shuffleCard();
+
+    this._setEventListeners();
+
+    return this._element;
+  }
 }
 
 export default Card;
