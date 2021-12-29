@@ -3,8 +3,40 @@ import SectionForCards from "./SectionForCards.js";
 import PopupWithSubmitButton from "./PopupWithSubmitButton.js";
 import Popup from "./Popup.js";
 import Card from "./Card.js";
+import TimeButton from "./TimeButton.js";
+
+// СОЗДАНИЕ ЭКЗЕМПЛЯРОВ КЛАССА
+
+// Создание экземпляра Section
+const cardList = new SectionForCards(createCard, '.cards');
+cardList.renderItems(colorsForFrontImages);
+
+//Создание экземпляров попапов
+const popupGameVictory = new PopupWithSubmitButton('.popup_type_game-victory',
+  handleStartGameButton);
+popupGameVictory.setEventListeners();
+
+const popupGameRules = new Popup('.popup_type_game-rules');
+popupGameRules.setEventListeners();
+
+const popupGameLoose = new PopupWithSubmitButton('.popup_type_game-loose',
+  handleStartGameButton);
+popupGameLoose.setEventListeners();
+
+// Создание экземпляров timeButton
+
+const timeButton30sec = new TimeButton('time-screen__button_30s', handleTimeButtonClick);
+timeButton30sec.setEventListeners();
+
+const timeButton45sec = new TimeButton('time-screen__button_45s', handleTimeButtonClick);
+timeButton45sec.setEventListeners();
+
+const timeButton60sec = new TimeButton('time-screen__button_60s', handleTimeButtonClick);
+timeButton60sec.setEventListeners();
 
 // ПЕРЕМЕННЫЕ
+
+const cards = document.querySelectorAll('.card');
 
 const linkForGameRules = document.querySelector('.footer__link_type_game-rules');
 const linkForStartGame = document.querySelector('.footer__link_type_new-game');
@@ -22,32 +54,10 @@ const debug = false; // константа для отладки
 
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
 const totalNumberOfCards = document.getElementById('total-number-of-cards');
-
-// НАЧАЛЬНЫЕ ЗНАЧЕНИЯ ПЕРЕМЕННЫХ
-
-// counterOfDisabledCards.textContent = '0';
-
-
-// СОЗДАНИЕ ЭКЗЕМПЛЯРОВ КЛАССА
-
-// Создание экземпляра Section
-const cardList = new SectionForCards(createCard, '.cards');
-cardList.renderItems(colorsForFrontImages);
-
-const cards = document.querySelectorAll('.card');
 totalNumberOfCards.textContent = `${cards.length}`;
 
-//Создание экземпляров попапов
-const popupGameVictory = new PopupWithSubmitButton('.popup_type_game-victory',
-  handleStartGameButton);
-popupGameVictory.setEventListeners();
 
-const popupGameRules = new Popup('.popup_type_game-rules');
-popupGameRules.setEventListeners();
 
-const popupGameLoose = new PopupWithSubmitButton('.popup_type_game-loose',
-  handleStartGameButton);
-popupGameLoose.setEventListeners();
 
 
 //ФУНКЦИИ
@@ -61,17 +71,10 @@ function createCard(color) {
   cardList.addItem(cardElement);
 }
 
-// function moveScreenUp(screen) {
-//   screen.classList.add('move-screen-up');
-// }
-
 function startNewGame(colors) {
   deleteCards();
   setCounterToZero();
   cardList.renderItems(colors);
-  // Array.from(document.querySelectorAll('.card')).forEach((card) => {
-  //   card.addEventListener('click', checkCard);
-  // });
   popupGameVictory.closePopup(); // todo нужно рефакторить, либо передавать как аргумент, либо менять
 }
 
@@ -187,36 +190,12 @@ function deleteCards() {
   })
 }
 
-// УСТАНОВКА СЛУШАТЕЛЕЙ СОБЫТИЙ
-
-linkForGameRules.addEventListener('click', () => {
-  popupGameRules.openPopup();
-});
-
-linkForStartGame.addEventListener('click', () => {
-  setTimeout(startNewGame, 500, colorsForFrontImages);
-});
-
-timeButtonsContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('time-screen__link')) {
-    timeForGame = parseInt(event.target.dataset.time);
-    console.log(event.target.dataset.time);
-    setInterval(decreaseTime, 1000);
-    // moveScreenUp(timeScreen);
-  }
-})
-
-// Движение экранов
-// startButtonAtFirstScreen.addEventListener('click', () => {
-//   moveScreenUp(startScreen);
-// })
-
 function decreaseTime() {
   if (timeForGame === 0) {
     popupGameLoose.openPopup();
     console.log('открываем попап о проигрыше');
     document.querySelectorAll('.card').forEach((card) => {
-    // card.removeEventListeners(); //todo убрать слушатели
+      // card.removeEventListeners(); //todo убрать слушатели
       console.log('блокируем карты');
     });
     timeForGame = -1;
@@ -233,4 +212,30 @@ function decreaseTime() {
 function setTime(value) {
   timer.innerHTML = `00:${value}`;
 }
+
+// УСТАНОВКА СЛУШАТЕЛЕЙ СОБЫТИЙ
+
+linkForGameRules.addEventListener('click', () => {
+  popupGameRules.openPopup();
+});
+
+linkForStartGame.addEventListener('click', () => {
+  setTimeout(startNewGame, 500, colorsForFrontImages);
+});
+
+// timeButtonsContainer.addEventListener('click', (event) => {
+//   if (event.target.classList.contains('time-screen__button')) {
+//     timeForGame = parseInt(event.target.dataset.time);
+//     console.log(event.target.dataset.time);
+//     setInterval(decreaseTime, 1000);
+//   }
+// })
+
+function handleTimeButtonClick() {
+  timeForGame = parseInt(this.dataset.time);
+  console.log(this.dataset.time);
+  setInterval(decreaseTime, 1000); //todo слишком быстро идет время
+}
+
+
 
