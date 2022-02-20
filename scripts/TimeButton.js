@@ -11,7 +11,7 @@ class TimeButton {
 
   removeEventListeners() {
     this._timeButtonElement.removeEventListener('click', this._handleTimeButtonClick);
-  }
+  } //todo удалить, если не нужно
 }
 
 export default TimeButton;

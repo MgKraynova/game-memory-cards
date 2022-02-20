@@ -14,3 +14,9 @@
   color: rgb(5, 19, 32);
   cursor: pointer;
 }
+
+@media screen and (max-width: 415px) {
+  .button {
+    font-size: 16px;
+  }
+}

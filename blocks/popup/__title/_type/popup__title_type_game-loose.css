@@ -1,0 +1,5 @@
+@media screen and (max-width: 415px) {
+  .popup__title_type_game-loose {
+    font-size: 24px;
+  }
+}

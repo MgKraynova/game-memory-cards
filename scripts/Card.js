@@ -22,7 +22,7 @@ class Card {
 
   removeEventListeners() {
     this._element.removeEventListener('click', this._handleCardClick);
-  }
+  } // todo удалить, если не нужно
 
   createCard() {
     const frontImage = this._element.querySelector('.card-front');

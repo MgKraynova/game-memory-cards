@@ -1,3 +1,10 @@
 .popup__title_type_game-victory {
   font-size: 36px;
 }
+
+@media screen and (max-width: 415px) {
+  .popup__title_type_game-victory {
+    font-size: 24px;
+    max-width: 150px;
+  }
+}

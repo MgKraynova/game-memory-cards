@@ -41,24 +41,20 @@ const cards = document.querySelectorAll('.card');
 const linkForGameRules = document.querySelector('.footer__link_type_game-rules');
 const linkForStartGame = document.querySelector('.footer__link_type_new-game');
 
-const timeButtonsContainer = document.querySelector('.time-screen__wrapper');
 const timer = document.getElementById('timer');
 
+let timerId = undefined;
 let timeForGame;
 let firstCard;
 let secondCard;
 let numberOfFoundMatches = 0;
 let numberOfDisabledCards = 0;
-
-const debug = false; // константа для отладки
-
 const counterOfDisabledCards = document.getElementById('counter-of-disabled-cards');
 const totalNumberOfCards = document.getElementById('total-number-of-cards');
+
 totalNumberOfCards.textContent = `${cards.length}`;
 
-
-
-
+const debug = false; // константа для отладки
 
 //ФУНКЦИИ
 
@@ -84,7 +80,7 @@ function handleStartGameButton() {
 
 // Функции, относящиеся к функционалу игры
 function isAllCardsOpened() {
-  if (numberOfFoundMatches === (cards.length/2)) {
+  if (numberOfFoundMatches === (cards.length / 2)) {
     popupGameVictory.openPopup();
   }
 }
@@ -196,11 +192,12 @@ function decreaseTime() {
     console.log('открываем попап о проигрыше');
     document.querySelectorAll('.card').forEach((card) => {
       // card.removeEventListeners(); //todo убрать слушатели
+      card.removeEventListener('click', checkCard);
       console.log('блокируем карты');
     });
     timeForGame = -1;
     console.log('уменьшили тайм фор гейм', timeForGame);
-  } else if (timeForGame > 0){
+  } else if (timeForGame > 0) {
     let current = --timeForGame;
     if (current < 10) {
       current = `0${current}`;
@@ -223,18 +220,13 @@ linkForStartGame.addEventListener('click', () => {
   setTimeout(startNewGame, 500, colorsForFrontImages);
 });
 
-// timeButtonsContainer.addEventListener('click', (event) => {
-//   if (event.target.classList.contains('time-screen__button')) {
-//     timeForGame = parseInt(event.target.dataset.time);
-//     console.log(event.target.dataset.time);
-//     setInterval(decreaseTime, 1000);
-//   }
-// })
-
 function handleTimeButtonClick() {
   timeForGame = parseInt(this.dataset.time);
   console.log(this.dataset.time);
-  setInterval(decreaseTime, 1000); //todo слишком быстро идет время
+  if (!(timerId === undefined)) {
+    clearInterval(timerId);
+  }
+  timerId = setInterval(decreaseTime, 1000);
 }
 
 
