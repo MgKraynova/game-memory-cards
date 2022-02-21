@@ -82,6 +82,7 @@ function handleStartGameButton() {
 function isAllCardsOpened() {
   if (numberOfFoundMatches === (cards.length / 2)) {
     popupGameVictory.openPopup();
+    clearInterval(timerId);
   }
 }
 
