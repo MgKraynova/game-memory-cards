@@ -5,6 +5,6 @@
   backface-visibility: hidden;
   position: absolute;
   transform: perspective(600px) rotateY(180deg);
-  transition: transform .6s linear;
+  transition: transform .4s linear;
   border-radius: 10px;
 }

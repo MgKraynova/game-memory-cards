@@ -119,7 +119,7 @@ function flipCard(card) {
 }
 
 function unFlipCardWithTimeout(card) {
-  setTimeout(unFlipCard, 1200, card);
+  setTimeout(unFlipCard, 1000, card);
 }
 
 function unFlipCard(card) {
