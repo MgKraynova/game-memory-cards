@@ -1,6 +1,8 @@
 <h1 align="center">Игра "Найди пару" на JS</h1>
 
-<img src="./images/game-preview.gif" title="memory game" width="350px" height="350px">
+<p align="center">
+<img src="./images/game-preview.gif" title="memory game" width="400px" height="400px">
+</p>
 
 <h2 align="left">Описание проекта</h2>
 
